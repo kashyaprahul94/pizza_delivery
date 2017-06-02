@@ -1,51 +1,71 @@
-#Run the project:
+Pizza Order System written in pure TypeScript
+=========================================
 
-mongod --dbpath ./data/db
-npm start
-
-navigate to => http://localhost:3010/orchestrate
+----------
 
 
+Installation
+-------------
 
-// Customer =>
+```bash
+$ mongod --dbpath ./data/db
+```
+
+```bash
+$ npm start
+```
+
+```
+Navigate to => http://localhost:3010/orchestrate
+```
+
+
+#
+API Usage
+-------------
+
+### Customer =>
 
 http://localhost:3010/customers
-
+```json
 {
 	"firstName": "John",
 	"lastName": "Doe",
 	"email": "john@doe.com",
 	"mobile": "+04123123121"
 }
+```
 
 
-// Category =>
+### Category =>
 
 http://localhost:3010/categories
-
+```json
 {
 	"name": "Pizza",
 	"code": "PIZZA"
 }
+```
 
 
 
-// Products =>
+### Products =>
 
 http://localhost:3010/products
-
+```json
 {
 	"name": "Pizza Mania",
 	"sku": "PIZ_12378N",
 	"categoryId": "592d99e6665badcc446b4939"
 }
+```
 
 
 
-// Carts =>
+### Carts =>
 
 http://localhost:3010/carts
-
+```json
 {
 	"customerId": "592daf05e4166bcf363a11cc",
 	"quantity": 2,
@@ -63,25 +83,27 @@ http://localhost:3010/carts
 		"currency": "INR"
 	}]
 }
+```
 
 add product item to cart
 
 http://localhost:3010/carts/592ef159e3cb65f130563dd7/add-product
-
+```json
 {
 	"productId": "592d9aed3eab75cc58c2376d",
 	"quantity": 3,
 	"price": 1400,
 	"currency": "INR"
 }
+```
 
 
 
 
-// Orders =>
+### Orders =>
 
 http://localhost:3010/orders
-
+```json
 {
 	"customerId": "592daf05e4166bcf363a11cc",
 	"cartId": "592e68548661c0d87b874ce7",
@@ -100,10 +122,12 @@ http://localhost:3010/orders
 
 	}
 }
+```
 
-// Checkout =>
+### Checkout =>
 
 http://localhost:3010/checkout
+```json
 {
 	"customerId": "592edfc13ca398f00d91b1cb",
 	"cartId": "592ef159e3cb65f130563dd7",
@@ -118,23 +142,24 @@ http://localhost:3010/checkout
 
 	}
 }
+```
 
 
 Algo =>
 
 Client:
 
-# Do_Login
-# if Login_status = Success, proceed to step 3.
-# call network for get_inventory.
-# browse through inventory.
-# call network for add_product_to_cart.
-# finalize cart by updating it
-# if coupon -> call network apply
-# do_checkout => call network
+### Do_Login
+### if Login_status = Success, proceed to step 3.
+### call network for get_inventory.
+### browse through inventory.
+### call network for add_product_to_cart.
+### finalize cart by updating it
+### if coupon -> call network apply
+### do_checkout => call network
 
 
-
+```c
 create_order( customer_id, cart_id ) {
 
 	create order object for customer;
@@ -145,7 +170,10 @@ create_order( customer_id, cart_id ) {
 	set_order_status( "placed" );
 
 }
+```
 
+```c
 process_payment( cart_id, payment_details ) {
 
 }
+```

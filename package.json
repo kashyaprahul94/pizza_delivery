@@ -8,10 +8,15 @@
   "main": "index.js",
   "scripts": {
     "gulp": "gulp",
-    "babel": "ts-babel-node",
-    "webpack": "webpack --config ./config/webpack.config.js",
-    "webpack:prod": "webpack --optimize-minimize --config ./config/webpack.config.js",
-    "start": "npm run babel index.ts"
+    "webpack": "webpack",
+    "server": "ts-node-dev -r tsconfig-paths/register --respawn --no-notify --fast index.ts",
+    "build:prod": "webpack --optimize-minimize",
+    "build:dev": "webpack",
+    "build": "npm run build:prod",
+    "start:dev": "npm run server",
+    "start:prod": "node index.js",
+    "start": "npm run start:dev",
+    "run": "npm run start:prod"
   },
   "devDependencies": {
     "@types/base-64": "^0.1.2",
@@ -39,11 +44,17 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-es2015": "^6.24.1",
     "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
-    "ts-babel-node": "^1.1.1",
-    "ts-loader": "^2.1.0",
-    "ts-node": "^3.0.4",
-    "typescript": "^2.3.3",
-    "webpack": "^2.6.1",
+    "awesome-typescript-loader": "^3.1.3",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "ts-node": "^3.3.0",
+    "ts-node-dev": "^1.0.0-pre.4",
+    "tsconfig-paths": "^2.3.0",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0",
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {

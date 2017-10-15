@@ -1,34 +1,43 @@
-const path = require( 'path' );
-const nodeExternals = require( 'webpack-node-externals' );
+const Path = require( "path" );
+const RootPath = require( "app-root-path" );
+const NodeExternals = require( "webpack-node-externals" );
+
+const Root = ( ...args ) => {
+	return RootPath.resolve( Path.join( ...args ) );
+};
 
 module.exports = {
     node: {
         console: true,
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty'
+        fs: "empty",
+        net: "empty",
+        tls: "empty"
     },
-    entry: './index.ts',
+    entry: Root( "index.ts" ),
     output: {
-        path: path.resolve( __dirname, '../dist' ),
-        filename: 'index.js'
+		path: Root( "build" ),
+        filename: "index.js"
     },
     resolve: {
-        extensions: [ '.js', '.ts', '.tsx' ]
+        extensions: [ ".js", ".ts", ".tsx" ]
+		modules: [
+			Root( "node_modules" ),
+			Root( "config" ),
+			Root( "src" )
+		]
     },
-    devtool: 'source-map',
-    target: 'node',
-    externals: [ nodeExternals() ],
+    target: "node",
+    externals: [ NodeExternals() ],
     module: {
         loaders: [
             {
-                test: /\.tsx?$/,
-                loader: [ 'babel-loader', 'awesome-typescript-loader' ],
+                test: /\.ts(x?)$/,
+                loader: [ "babel-loader", "awesome-typescript-loader" ],
                 exclude: /node_modules/
             }
         ]
     },
     plugins: [
-
+    
     ]
 };
